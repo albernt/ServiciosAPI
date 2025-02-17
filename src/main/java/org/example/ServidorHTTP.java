@@ -9,19 +9,17 @@ import java.net.InetSocketAddress;
 
 public class ServidorHTTP {
     public static void main(String[] args) throws IOException {
-        int puerto = 8080;  // Cambia el puerto si es necesario
+        int puerto = 8080;
         HttpServer servidor = HttpServer.create(new InetSocketAddress(puerto), 0);
 
-        // Manejador para la ruta /saludo
         servidor.createContext("/saludo", new ManejadorSaludo());
-        servidor.setExecutor(null); // Usa el executor por defecto
+        servidor.setExecutor(null);
         servidor.start();
 
         System.out.println("🚀 Servidor iniciado en http://localhost:" + puerto + "/saludo");
     }
 }
 
-// Manejador que responde a las solicitudes
 class ManejadorSaludo implements HttpHandler {
     @Override
     public void handle(HttpExchange intercambio) throws IOException {
